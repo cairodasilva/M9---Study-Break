@@ -1,6 +1,8 @@
 # M9---Study-Break
 
 Brief Overview
+
+
 This project was made to serve as a study break during times where students are working really hard and they can mess around and make some alright looking art to show their friends and then really easily clear it and go back to work.
 To use it you first need to make a background, do this by moving the mouse horizontally to change the pattern and vertically to change the color. Then when you like it that way it is, press x. Now that you have a cool background, click and drag the mouse around to make a little drawing, notice the symettry? If you want a bigger brush press the up arrow, pressing the down arrow decreases the brush size. Press space to change the color of the brush to a new color. Are you done? press x again to clear the background and restart from the beginning.
 
