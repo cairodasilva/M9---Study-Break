@@ -7,7 +7,7 @@ int brushSize = 20;
 float prevX, prevY;
 
 void setup() {
-  size(640, 360);
+  size(800, 800);
   colorMode(HSB, 360, 100, 100);
   currentColor = color(random(255), random(255), random(255));
 }
@@ -15,31 +15,27 @@ void setup() {
 void draw() {
   if (!isPaused) {
     loadPixels();
-
-    float n = (mouseX * 10.0) / width;
-    float w = 16.0;         // 2D space width
-    float h = 16.0;         // 2D space height
-    float dx = w / width;    // Increment x this amount per pixel
-    float dy = h / height;   // Increment y this amount per pixel
-    float x = -w / 2;          // Start x at -1 * width / 2
+    float mouse = (mouseX * 10.0) / width;
+    float w_factor = 16.0;         
+    float h_factor = 16.0;         
+    float dx = w_factor / width;    
+    float dy = h_factor / height;   
+    float x = -w_factor / 2;          
     for (int i = 0; i < width; i++) {
-      float y = -h / 2;        // Start y at -1 * height / 2
+      float y = -h_factor / 2;        
       for (int j = 0; j < height; j++) {
-        float r = sqrt((x * x) + (y * y));    // Convert cartesian to polar
-        float theta = atan2(y, x);         // Convert cartesian to polar
-        // Compute 2D polar coordinate function
-        float val = sin(cos(n) * cos(n) + 5 * n * theta); // Results in a value between -1 and 1
+        float r = sqrt((x * x) + (y * y));    
+        float theta = atan2(y, x);         
+        float brightness = sin(cos(mouse) * cos(mouse) + 9 * mouse * theta); 
         hue = mouseY % 360;
-        // Map resulting value to grayscale value
-        pixels[i + j * width] = color((hue) % 360, 100, 100 - (val + 1) * 30);
-        // Scale to between 0 and 255
-        y += dy;                // Increment y
+        pixels[i + j * width] = color((hue) % 360, 100, 100 - (brightness + 1) * 30);
+        y += dy;              
       }
-      x += dx;                  // Increment x
+      x += dx;                  
     }
     updatePixels();
   } else {
-    // Only draw when the mouse is being dragged
+    
     if (mousePressed && Moved()) {
       strokeWeight(brushSize);
       stroke(currentColor);
